@@ -50,6 +50,7 @@ results.initialize();
 $('#remote .typeahead').typeahead(null, {
   name: 'results',
   displayKey: 'label',
+  items: 9999,
   source: results.ttAdapter()
 }).on('typeahead:selected', function($e, data) {
   window.location = "/" + data.model + "s/" + data._id;
