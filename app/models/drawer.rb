@@ -1,8 +1,6 @@
 require 'elasticsearch/model'
 require 'elasticsearch/model/callbacks'
 
-Elasticsearch::Client.new host: ENV['BONSAI_URL']
-
 class Drawer
   include Mongoid::Document
   include Elasticsearch::Model

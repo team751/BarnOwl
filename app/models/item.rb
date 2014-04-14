@@ -1,5 +1,3 @@
-Elasticsearch::Client.new host: ENV['BONSAI_URL']
-
 class Item
   include Mongoid::Document
   include Elasticsearch::Model
