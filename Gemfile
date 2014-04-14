@@ -32,6 +32,10 @@ group :test do
   gem "rb-inotify", "~> 0.9"
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem "bootstrap-sass", "~> 2.3.2.1"
 gem "font-awesome-sass-rails"
 gem "simple_form", github: "plataformatec/simple_form"
