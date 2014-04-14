@@ -1,0 +1,9 @@
+<%= form_for @item do |f| -%>
+  Name: <%= f.text_field :name, :placeholder => "Item Name" %><br>
+  Price: <%= f.number_field :price, :placeholder => "Item Price" %><br>
+  Drawers:
+  <% Drawer.all.each do |drawer| %>
+    <label><%= check_box_tag "item[drawer_ids][]", drawer.id %> <%= drawer.label %> (Row <%= drawer.row %> Column <%= drawer.column %>)</label>
+  <% end %>
+  <%= f.submit :class => "btn" %>
+<% end -%>

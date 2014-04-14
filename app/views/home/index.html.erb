@@ -1,0 +1,57 @@
+<!--<div class="remote">
+  <input type="text" class="search" placeholder="Enter search term here..." style="width: 100%;"></input>
+</div>-->
+
+<style>
+.twitter-typeahead{
+     width: 100%;
+}
+
+.typeahead {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+.tt-dropdown-menu{
+    width: 102%;
+}
+input.typeahead.tt-query{ /* This is optional */
+    width: 300px !important;
+}
+
+#remote {
+  width: 100%;
+}
+</style>
+<center>
+  <img style="width: 150px;" src="http://localhost:3000/assets/logo.png" />
+</center>
+<h1 style="text-align: center;">BarnOwl Part Management System</h1><br>
+<div id="remote" style="width: 100%;">
+  <input class="typeahead" type="text" placeholder="Enter search term here..."></div>
+</div>
+
+<div id="results">
+  
+</div>
+
+<script>
+var results = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('label'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: '/home/autocomplete?q=%QUERY.json'
+});
+ 
+results.initialize();
+ 
+$('#remote .typeahead').typeahead(null, {
+  name: 'results',
+  displayKey: 'label',
+  source: results.ttAdapter()
+}).on('typeahead:selected', function($e, data) {
+  window.location = "/" + data.model + "/" + data._id;
+});
+</script>

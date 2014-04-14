@@ -1,0 +1,7 @@
+<%= form_for @drawer do |f| -%>
+  Label: <%= f.text_field :label, :placeholder => "Drawer Label" %><br>
+  Row: <%= f.number_field :row, :placeholder => "Drawer Row" %><br>
+  Column: <%= f.number_field :column, :placeholder => "Drawer Column" %><br>
+  
+  <%= f.submit :class => "btn" %>
+<% end %>

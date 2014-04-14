@@ -1,0 +1,11 @@
+<h1><%= @drawer.label %></h1>
+<h3>Items</h3>
+<% if @drawer.items.count == 0 %>
+  <p>No items entered</p>
+<% end %>
+<ul>
+  <% @drawer.items.each do |item| %>
+    <a href="/items/<%= item.id %>"><%= item.name %></a>
+  <% end %>
+</ul>
+  
