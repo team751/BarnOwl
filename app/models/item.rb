@@ -22,4 +22,4 @@ class Item
   end
 end
 
-Item.import
+# Item.import

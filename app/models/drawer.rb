@@ -18,4 +18,4 @@ class Drawer
   end
 end
 
-Drawer.import
+# Drawer.import
