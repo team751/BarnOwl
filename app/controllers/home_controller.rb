@@ -16,7 +16,7 @@ class HomeController < ApplicationController
       r = {}
       r[:_id] = result["_id"]
       r[:label] = result[:_source][:name]
-      r[:model] = "items"
+      r[:model] = "item"
       results << r
     end
     render :json => results

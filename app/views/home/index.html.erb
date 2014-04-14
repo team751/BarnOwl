@@ -52,6 +52,6 @@ $('#remote .typeahead').typeahead(null, {
   displayKey: 'label',
   source: results.ttAdapter()
 }).on('typeahead:selected', function($e, data) {
-  window.location = "/" + data.model + "/" + data._id;
+  window.location = "/" + data.model + "s/" + data._id;
 });
 </script>
