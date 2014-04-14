@@ -5,6 +5,8 @@ class Drawer
   include Mongoid::Document
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include Tire::Model::Search
+    include Tire::Model::Callbacks
   
   field :section, type: Integer
   field :row, type: Integer
