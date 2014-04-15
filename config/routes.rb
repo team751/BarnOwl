@@ -23,6 +23,7 @@ Labsort::Application.routes.draw do
   
   resources "drawers"
   resources "items"
+  resources "screws"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

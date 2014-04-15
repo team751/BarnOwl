@@ -1,0 +1,10 @@
+<%= form_for @screw do |f| -%>
+  Size: <%= f.text_field :size, :placeholder => "Screw Size" %><br>
+  Length: <%= f.text_field :length, :placeholder => "Screw Length" %><br>
+  Threading: <%= f.text_field :threading, :placeholder => "Screw Threading" %><br>
+  Drawers:
+  <% Drawer.all.each do |drawer| %>
+    <label><%= check_box_tag "screw[drawer_ids][]", drawer.id %> <%= drawer.label %> (Row <%= drawer.row %> Column <%= drawer.column %>)</label>
+  <% end %>
+  <%= f.submit :class => "btn" %>
+<% end -%>

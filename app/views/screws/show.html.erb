@@ -1,0 +1,33 @@
+<h1><%= "#{@screw.size}x-#{@screw.length} #{@screw.threading}" %></h1>
+<h3>Drawer List</h3>
+<% @screw.drawers.each do |drawer| %>
+  <a href="/drawers/<%= drawer.id %>"><%= drawer.label %></a>
+<% end %>
+<h3>Map</h3>
+<table border="1">
+  <tr>
+    <% 10.times.each do |column| %>
+      <td><%= column+1 %></td>
+    <% end %>
+  </tr>
+  <% 6.times.each do |row| %>
+    <tr>
+      <% 10.times.each do |column| %>
+        <td <%= raw('style="background-color: #FF4136;"') if @screw.locations.include?([row+1, column+1]) %>><a href="/drawers/<%= Drawer.where(:row => row+1, :column => column+1).first.id %>"><%= Drawer.where(:row => row+1, :column => column+1).first.label %></a></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+$.idleTimer(60000);
+
+$(document).bind("idle.idleTimer", function(){
+  document.location = "/"
+});
+
+
+$(document).bind("active.idleTimer", function(){
+ // function you want to fire when the user becomes active again
+});
+</script>
