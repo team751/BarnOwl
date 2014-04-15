@@ -5,6 +5,7 @@ if ENV['BONSAI_URL']
   BONSAI_INDEX_NAME = ENV['BONSAI_URL'][/[^\/]+$/]
 else
   Elasticsearch::Model.client = Elasticsearch::Client.new({url: "localhost:9200", logs: true})
+  ENV['ELASTICSEARCH_URL'] = ENV['BONSAI_URL']
   # app_name = Rails.application.class.parent_name.underscore.dasherize
   # BONSAI_INDEX_NAME = "#{app_name}-#{Rails.env}"
 end
