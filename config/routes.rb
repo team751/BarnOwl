@@ -17,6 +17,7 @@ Labsort::Application.routes.draw do
 
   resources :users
   get "home/index"
+  get "search/screws", to: "home#screwSearch"
   
   get "home/autocomplete"
   

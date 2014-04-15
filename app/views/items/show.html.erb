@@ -18,3 +18,16 @@
     </tr>
   <% end %>
 </table>
+
+<script>
+$.idleTimer(60000);
+
+$(document).bind("idle.idleTimer", function(){
+  document.location = "/"
+});
+
+
+$(document).bind("active.idleTimer", function(){
+ // function you want to fire when the user becomes active again
+});
+</script>
