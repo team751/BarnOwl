@@ -1,9 +1,6 @@
 class Screw
   include Mongoid::Document
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+
   field :length, type: String
   field :size, type: String
   field :threading, type: String

@@ -8,7 +8,6 @@ gem "coffee-rails", "~> 4.0.0"
 gem "therubyracer", platforms: :ruby
 gem "jquery-rails"
 gem "turbolinks"
-gem 'tire'
 gem "jbuilder", "~> 1.2"
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
