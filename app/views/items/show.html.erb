@@ -1,7 +1,11 @@
-<h1><%= @item.name%></h1>
+<h1><%= @item.name %></h1>
+<% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:moderator) %>
+  <%= link_to "Edit", edit_item_path(@item) %><br>
+  <%= link_to "Delete", @item, :method => :delete, :class => :destroy %>
+<% end %>
 <h3>Drawer List</h3>
 <% @item.drawers.each do |drawer| %>
-  <a href="/drawers/<%= drawer.id %>"><%= drawer.label %></a>
+  <a href="/drawers/<%= drawer.id %>"><%= drawer.label %></a><br>
 <% end %>
 <h3>Map</h3>
 <table border="1">

@@ -41,14 +41,14 @@ class Identity
   end
 
 
-  def find_or_create_user(current_user)
-    if current_user && self.user == current_user
+  def find_or_create_user(current_user_if_exists)
+    if current_user_if_exists && self.user == current_user_if_exists
       # User logged in and the identity is associated with the current user
       return self.user
-    elsif current_user && self.user != current_user
+    elsif current_user_if_exists && self.user != current_user_if_exists
       # User logged in and the identity is not associated with the current user
       # so lets associate the identity and update missing info
-      self.user = current_user
+      self.user = current_user_if_exists
       self.user.email       ||= self.email
       self.user.image       ||= self.image
       self.user.first_name  ||= self.first_name

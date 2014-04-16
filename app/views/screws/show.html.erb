@@ -1,23 +1,14 @@
-<h1><%= "#{@screw.size}x-#{@screw.length} #{@screw.threading}" %></h1>
+<h1><%= "#{@screw.size}x#{@screw.length} #{@screw.threading}" %></h1>
+<% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:moderator) %>
+  <%= link_to "Edit", edit_screw_path(@screw) %><br>
+  <%= link_to "Delete", @screw, :method => :delete, :class => :destroy %>
+<% end %>
 <h3>Drawer List</h3>
 <% @screw.drawers.each do |drawer| %>
-  <a href="/drawers/<%= drawer.id %>"><%= drawer.label %></a>
+  <a href="/drawers/<%= drawer.id %>"><%= drawer.label %></a><br>
 <% end %>
 <h3>Map</h3>
-<table border="1">
-  <tr>
-    <% 10.times.each do |column| %>
-      <td><%= column+1 %></td>
-    <% end %>
-  </tr>
-  <% 6.times.each do |row| %>
-    <tr>
-      <% 10.times.each do |column| %>
-        <td <%= raw('style="background-color: #FF4136;"') if @screw.locations.include?([row+1, column+1]) %>><a href="/drawers/<%= Drawer.where(:row => row+1, :column => column+1).first.id %>"><%= Drawer.where(:row => row+1, :column => column+1).first.label %></a></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
+<%= render :partial => "screws/partials/map", :locals => {:screw => @screw} %>
 
 <script>
 $.idleTimer(60000);

@@ -1,14 +1,32 @@
 class ScrewsController < ApplicationController
   before_filter :find_screw, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  
   # GET /screws
   # GET /screws.xml
   def index
-    @screws = Screw.all
-
-    respond_to do |wants|
-      wants.html # index.html.erb
-      wants.xml  { render :xml => @screws }
+    redirect_to "/"
+  end
+  
+  def search
+    @screws = []
+    sizes = []
+    lengths = []
+    
+    puts "SIZES: ", params[:search][:sizes]
+    
+    params[:search][:sizes].each do |size|
+      sizes << size.gsub("\"", "")
+    end
+    
+    params[:search][:lengths].each do |length|
+      lengths << length.gsub("\"", "")
+    end
+    
+    sizes.each do |size|
+      lengths.each do |length|
+        @screws.concat(Screw.where(:length => length, :size => size))
+      end
     end
   end
 
@@ -59,7 +77,9 @@ class ScrewsController < ApplicationController
   # PUT /screws/1.xml
   def update
     respond_to do |wants|
-      if @screw.update_attributes(params[:screw])
+      if @screw.update_attributes(params[:screw].permit(:size, :length, :threading, :drawer_ids, :drawers))
+        @screw.drawer_ids = params[:screw][:drawer_ids]
+        @screw.save
         flash[:notice] = 'Screw was successfully updated.'
         wants.html { redirect_to(@screw) }
         wants.xml  { head :ok }

@@ -25,6 +25,14 @@ input.typeahead.tt-query{ /* This is optional */
 #remote {
   width: 100%;
 }
+
+h2 {
+  text-align: center;
+}
+
+.searchlink {
+  width: 200px;
+}
 </style>
 <center>
   <img style="width: 150px;" src="/assets/logo.png" />
@@ -33,16 +41,15 @@ input.typeahead.tt-query{ /* This is optional */
 <div id="remote" style="width: 100%;">
   <input class="typeahead" type="text" placeholder="Enter search term here..."></div>
 </div>
-
-<div id="results">
-  
-</div>
-
+<h2>Or</h2>
+<center>
+  <a class="searchlink btn btn-info" href="search/screws">Search for Screws</a>
+</center>
 <script>
 var results = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('label'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  remote: '/home/autocomplete?q=%QUERY.json'
+  remote: '/home/autocomplete?q=%QUERY'
 });
  
 results.initialize();

@@ -11,11 +11,23 @@ class Drawer
   field :column, type: Integer
   field :label, type: String
   
+  validates_presence_of :row
+  validates_presence_of :column
+  validates_presence_of :label
+  
   has_and_belongs_to_many :items
   has_and_belongs_to_many :screws
+  
+  validate :check_row_column
     
   def as_indexed_json(options={})
     as_json(except: [:id, :_id])
+  end
+  
+  def check_row_column 
+    if (Drawer.where(:row => row, :column => column)-[self]).count > 0
+      errors[:base] << "Location cannot already be in use"
+    end
   end
 end
 

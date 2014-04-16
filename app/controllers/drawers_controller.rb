@@ -1,6 +1,7 @@
 class DrawersController < ApplicationController
   before_filter :find_drawer, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  
   # GET /drawers
   # GET /drawers.xml
   def index

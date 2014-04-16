@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :find_item, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  
   # GET /items
   # GET /items.xml
   def index
@@ -40,7 +41,9 @@ class ItemsController < ApplicationController
   # POST /items.xml
   def create
     @item = Item.new(params[:item].permit(:name, :price, :drawer_ids))
-
+    @item.drawer_ids = params[:item][:drawer_ids]
+    @item.save
+    
     respond_to do |wants|
       if @item.save
         flash[:notice] = 'Item was successfully created.'
@@ -57,7 +60,9 @@ class ItemsController < ApplicationController
   # PUT /items/1.xml
   def update
     respond_to do |wants|
-      if @item.update_attributes(params[:item])
+      if @item.update_attributes(params[:item].permit(:name, :price, :drawer_ids))
+        @item.drawer_ids = params[:item][:drawer_ids]
+        @item.save
         flash[:notice] = 'Item was successfully updated.'
         wants.html { redirect_to(@item) }
         wants.xml  { head :ok }

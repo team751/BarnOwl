@@ -6,11 +6,19 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
+  
+  def current_user_if_exists
+    if current_user
+      current_user
+    else
+      User.new
+    end
+  end
 
   private
 
   def check_registration
-    if current_user && !current_user.valid?
+    if current_user_if_exists && !current_user_if_exists.valid?
       flash[:warning] = "Please finish your #{view_context.link_to "registration", edit_user_registration_url }  before continuing.".html_safe
     end
   end

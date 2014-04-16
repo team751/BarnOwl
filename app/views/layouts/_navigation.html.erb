@@ -7,8 +7,13 @@
   <% end %>
   <% if user_signed_in? %>
     <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-    <% if current_user.has_role? :admin %>
+    <% if current_user_if_exists.has_role? :admin %>
       <li><%= link_to 'Admin', users_path %></li>
+    <% end %>
+    <% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:moderator) %>
+      <li><%= link_to 'New Screw', new_screw_path %></li>
+      <li><%= link_to 'New Item', new_item_path %></li>
+      <li><%= link_to 'New Drawer', new_drawer_path %></li>
     <% end %>
   <% else %>
     <li><%= link_to 'Sign up', new_user_registration_path %></li>

@@ -1,4 +1,8 @@
 <h1><%= @drawer.label %></h1>
+<% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:moderator) %>
+  <%= link_to "Edit", edit_drawer_path(@drawer) %><br>
+  <%= link_to "Delete", @drawer, :method => :delete, :class => :destroy %>
+<% end %>
 <h3>Items</h3>
 <% if @drawer.items.count == 0 %>
   <p>No items entered</p>
@@ -10,7 +14,7 @@
 </ul>
   
 <script>
-$.idleTimer(10000);
+$.idleTimer(60000);
 
 $(document).bind("idle.idleTimer", function(){
   document.location = "/"

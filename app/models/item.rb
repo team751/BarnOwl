@@ -7,6 +7,8 @@ class Item
   field :price, type: Float
   field :category_id, type: Integer
   
+  validates_presence_of :name
+  
   has_and_belongs_to_many :drawers
   
   def as_indexed_json(options={})

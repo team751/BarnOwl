@@ -6,6 +6,9 @@ class Screw
   field :threading, type: String
   field :head, type: String
   
+  validates_presence_of :size
+  validates_presence_of :length
+  
   has_and_belongs_to_many :drawers
   
   def as_indexed_json(options={})
