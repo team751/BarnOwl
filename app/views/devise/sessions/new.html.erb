@@ -6,3 +6,15 @@
   <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
 <% end %>
 <%= render "devise/shared/links" %>
+<script>
+$.idleTimer(10000);
+
+$(document).bind("idle.idleTimer", function(){
+  document.location = "/"
+});
+
+
+$(document).bind("active.idleTimer", function(){
+ // function you want to fire when the user becomes active again
+});
+</script>
