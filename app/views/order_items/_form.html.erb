@@ -1,0 +1,26 @@
+<%= simple_form_for(@order_item) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <h3>Enter a URL</h3>
+    <%= f.input :url %>
+    <h3>Or a McMaster-Carr Part #</h3>
+    <%= f.input :mcmasterPartNumber, label: "McMaster-Carr Part #" %>
+    <div class="form-group string">
+      <label class="string optional control-label">Order State</label>
+      <div>
+        <select name="order_item[order_state]">
+          <option value="ready" <%= "selected" if @order_item.order_state == "ready" %>>Ready to order item</option>
+          <option value="placed" <%= "selected" if @order_item.order_state == "placed" %>>Item ordered</option>
+          <option value="hold" <%= "selected" if @order_item.order_state == "hold" %>>Don't order the item yet</option>
+          <option value="received" <%= "selected" if @order_item.order_state == "received" %>>Item received</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

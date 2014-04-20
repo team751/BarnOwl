@@ -1,0 +1,39 @@
+<h1>Listing Order Items</h1>
+<a href="/order_items">All</a> | <a href="/order_items/filter/ready">To be ordered</a> | <a href="/order_items/filter/placed">Ordered</a> | <a href="/order_items/filter/hold">On hold</a> | <a href="/order_items/filter/received">Received</a><br><br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>McMaster-Carr Part #</th>
+      <th>Order State</th>
+      <th>Ordered by</th>
+      <th>Requested by</th>
+      <% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:leader) %>
+        <th></th>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><a target="_blank" href="<%= order_item.logic_url %>"><%= order_item.name %></a></td>
+        <td><%= order_item.mcmasterPartNumber %></td>
+        <td><%= raw(order_item.state_html) %></td>
+        <td><%= order_item.ordered_by.email if order_item.ordered_by %></td>
+        <td><%= order_item.requested_by.email if order_item.requested_by %></td>
+        <% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:leader) %>
+          <td><%= link_to order_item.next_step_title, order_item.next_step_url %></td>
+          <td><%= link_to 'Edit', edit_order_item_path(order_item) %></td>
+          <td><%= link_to 'Destroy', order_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:leader) %>
+  <%= link_to 'New Order item', new_order_item_path %>
+<% end %>

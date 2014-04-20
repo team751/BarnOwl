@@ -2,6 +2,7 @@ defaults: &defaults
   roles:
     - admin
     - moderator
+    - leader
     - user
   default_role: user
 

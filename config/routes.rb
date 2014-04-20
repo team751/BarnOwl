@@ -1,6 +1,8 @@
 Labsort::Application.routes.draw do
   
   
+  resources :order_items
+
   authenticated :user do
     root to: 'home#index', as: :authenticated_root
   end
@@ -21,6 +23,9 @@ Labsort::Application.routes.draw do
   
   get "home/autocomplete"
   
+  get "/order_items/:id/status/:verb", to: "order_items#change_status"
+  get "/order_items/filter/:filter", to: "order_items#filter"
+  resources "order_items"
   resources "drawers"
   resources "items"
   resources "screws"
