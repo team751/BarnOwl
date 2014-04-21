@@ -15,9 +15,9 @@ class OrderItem
     if order_state == "ready"
       resp = "#{resp}-success\">Ready to be ordered</span>"
     elsif order_state == "placed"
-      resp = "#{resp}-warning\">Item ordered</span>"
+      resp = "#{resp}-info\">Item ordered</span>"
     elsif order_state == "hold"
-      resp = "#{resp}-default\">Item on hold</span>"
+      resp = "#{resp}-warning\">Item on hold</span>"
     elsif order_state == "received"
       resp = "#{resp}-primary\">Item received</span>"
     else
