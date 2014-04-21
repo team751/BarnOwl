@@ -10,6 +10,20 @@ class OrderItem
   belongs_to :ordered_by, :class_name => "User"
   belongs_to :requested_by, :class_name => "User"
   
+  def state_int
+    if order_state == "ready"
+      0
+    elsif order_state == "placed"
+      1
+    elsif order_state == "hold"
+      2
+    elsif order_state == "received"
+      3
+    else
+      4
+    end
+  end
+  
   def state_html
     resp = "<span class=\"label label"
     if order_state == "ready"

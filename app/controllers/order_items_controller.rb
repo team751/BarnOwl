@@ -5,7 +5,7 @@ class OrderItemsController < ApplicationController
   # GET /order_items
   # GET /order_items.json
   def index
-    @order_items = OrderItem.where(:order_state.ne => "received")
+    @order_items = OrderItem.where(:order_state.ne => "received").sort_by(&:state_int)
   end
   
   def filter
