@@ -17,9 +17,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    authorize! :create, @user, :message => 'Not authorized as an administrator.'
+    if current_user
+      if !current_user.roles.include? "admin"
+        redirect_to "/"
+        return
+      end
+    end
 
-    @user = User.new(user_params)
+    @user = User.new(params[:user].permit(:email, :first_name, :last_name, :roles, :password, :password_confirmation))
+    @user.roles = params[:user][:roles]
+    @user.save
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -58,6 +65,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params..permit(:email, :first_name, :last_name, :roles => [])
+      params.permit(:email, :first_name, :last_name, :roles => [])
     end
 end

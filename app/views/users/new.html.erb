@@ -1,0 +1,21 @@
+<%= form_for @user, :url => "/users/new" do |f| %>
+<% if @user.errors.any? %>
+<div class="alert alert-danger">
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+  Email: <%= f.email_field :email, :placeholder => "Email Address..." %><br>
+  First Name: <%= f.text_field :first_name, :placeholder => "First Name..." %><br>
+  Last Name: <%= f.text_field :last_name, :placeholder => "Last Name..." %><br>
+  Password: <%= f.password_field :password, :placeholder => "Password..." %><br>
+  Password Confirmation: <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation..." %><br>
+  Roles:
+  <label><%= check_box_tag "user[roles][]", "admin" %> Admin</label>
+  <label><%= check_box_tag "user[roles][]", "moderator" %> Moderator</label>
+  <label><%= check_box_tag "user[roles][]", "leader" %> Leader</label>
+  <%= f.submit :class => "btn" %>
+<% end -%>

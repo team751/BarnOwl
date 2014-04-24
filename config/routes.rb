@@ -17,6 +17,8 @@ Labsort::Application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  post "/users/new", to: "users#create"
+
   resources :users
   get "home/index"
   get "search/screws", to: "home#screwSearch"

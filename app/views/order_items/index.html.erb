@@ -22,8 +22,8 @@
         <td><a target="_blank" href="<%= order_item.logic_url %>"><%= order_item.name %></a></td>
         <td><%= order_item.mcmasterPartNumber %></td>
         <td><%= raw(order_item.state_html) %></td>
-        <td><%= order_item.ordered_by.email if order_item.ordered_by %></td>
-        <td><%= order_item.requested_by.email if order_item.requested_by %></td>
+        <td><%= order_item.ordered_by.full_name if order_item.ordered_by %></td>
+        <td><%= order_item.requested_by.full_name if order_item.requested_by %></td>
         <% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:leader) %>
           <td><%= link_to order_item.next_step_title, order_item.next_step_url %></td>
           <td><%= link_to 'Edit', edit_order_item_path(order_item) %></td>
