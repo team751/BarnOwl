@@ -29,6 +29,28 @@ class Drawer
       errors[:base] << "Location cannot already be in use"
     end
   end
+  
+  def self.numberOfRows
+    greatest = 0
+    Drawer.all.each do |d|
+      if d.row > greatest
+        greatest = d.row
+      end
+    end
+    
+    greatest
+  end
+  
+  def self.numberOfColumns
+    greatest = 0
+    Drawer.all.each do |d|
+      if d.column > greatest
+        greatest = d.column
+      end
+    end
+    
+    greatest
+  end
 end
 
 Drawer.import

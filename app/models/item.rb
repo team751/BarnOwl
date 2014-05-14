@@ -6,6 +6,7 @@ class Item
   field :name, type: String
   field :price, type: Float
   field :category_id, type: Integer
+  field :barcode, type: String
   
   validates_presence_of :name
   
@@ -21,6 +22,11 @@ class Item
       loc << [drawer.row, drawer.column]
     end
     return loc
+  end
+  
+  def self.randomBarcode
+    o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    string = (0...13).map { o[rand(o.length)] }.join
   end
 end
 

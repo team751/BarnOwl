@@ -57,7 +57,7 @@ class ScrewsController < ApplicationController
   # POST /screws
   # POST /screws.xml
   def create
-    @screw = Screw.new(params[:screw].permit(:size, :length, :threading, :drawer_ids, :drawers))
+    @screw = Screw.new(params[:screw].permit(:size, :length, :threading, :drawer_ids, :drawers, :barcode))
     @screw.drawer_ids = params[:screw][:drawer_ids]
     @screw.save
 
@@ -77,7 +77,7 @@ class ScrewsController < ApplicationController
   # PUT /screws/1.xml
   def update
     respond_to do |wants|
-      if @screw.update_attributes(params[:screw].permit(:size, :length, :threading, :drawer_ids, :drawers))
+      if @screw.update_attributes(params[:screw].permit(:size, :length, :threading, :drawer_ids, :drawers, :barcode))
         @screw.drawer_ids = params[:screw][:drawer_ids]
         @screw.save
         flash[:notice] = 'Screw was successfully updated.'

@@ -5,6 +5,7 @@ class Screw
   field :size, type: String
   field :threading, type: String
   field :head, type: String
+  field :barcode, type: String
   
   validates_presence_of :size
   validates_presence_of :length

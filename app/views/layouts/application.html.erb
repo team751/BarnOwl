@@ -8,10 +8,43 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <script href="/assets/typeahead.bundle.js"></script>
   <script href="/assets/bloodhound.min.js"></script>
+  <script>
+    // define a handler
+    function barcodeInputKey(e) {
+      var value = $(".hiddenBarcodeReader").val() + String.fromCharCode(e.keyCode);
+      $(".hiddenBarcodeReader").val(value);
+      if (e.keyCode == 13) {
+        $(".hiddenBarcodeReader").parent().submit();
+      }
+    }
+
+    function barcodeInputPaste(e) {
+      var value = $(".hiddenBarcodeReader").val() + e.clipboardData.getData('text/plain');
+      $(".hiddenBarcodeReader").val(value);
+    }
+
+    function repeatingFormClearer() {
+      setInterval(function() {
+        $(".hiddenBarcodeReader").val("");
+      }, 2000)
+    }
+
+    function enableBarcodeReading() {
+      // register the handler 
+      document.addEventListener('keyup', barcodeInputKey, false);
+      document.addEventListener('paste', barcodeInputPaste, false);
+
+      repeatingFormClearer();
+    }
+  </script>
   <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
+    <%= form_tag "/home/search/barcode", method: "POST" do %>
+      <input type="hidden" name="q" class="hiddenBarcodeReader"></input>
+      <input style="visibility: hidden; position: fixed;" type="submit">
+    <% end %>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
@@ -34,7 +67,6 @@
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
     <script>
-      // define a handler
       function doc_keyUp(e) {
 
           // this would test for whichever key is 40 and the ctrl key at the same time
@@ -43,7 +75,6 @@
               document.location = "<%= new_user_session_path %>"
           }
       }
-      // register the handler 
       document.addEventListener('keyup', doc_keyUp, false);
     </script>
   </body>

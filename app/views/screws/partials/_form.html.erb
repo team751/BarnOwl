@@ -13,8 +13,23 @@
   Length: <%= f.text_field :length, :placeholder => "Screw Length" %><br>
   Threading: <%= f.text_field :threading, :placeholder => "Screw Threading" %><br>
   Drawers:
-  <% Drawer.all.each do |drawer| %>
-    <label><%= check_box_tag "screw[drawer_ids][]", drawer.id, @screw.drawers.include?(drawer) %> <%= drawer.label %> (Row <%= drawer.row %> Column <%= drawer.column %>)</label>
-  <% end %>
+  <table border="1">
+    <tr>
+      <% Drawer.numberOfColumns.times.each do |column| %>
+        <td><%= column+1 %></td>
+      <% end %>
+    </tr>
+    <% Drawer.numberOfRows.times.each do |row| %>
+      <tr>
+        <% Drawer.numberOfColumns.times.each do |column| %>
+          <% if Drawer.where(:row => row+1, :column => column+1).count > 0 %>
+            <td><label><%= check_box_tag "screw[drawer_ids][]", Drawer.where(:row => row+1, :column => column+1).first.id, @screw.drawers.include?(Drawer.where(:row => row+1, :column => column+1).first) %> <%= Drawer.where(:row => row+1, :column => column+1).first.label %></label></td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
   <%= f.submit :class => "btn" %>
-<% end -%>
+<% end %>

@@ -1,13 +1,17 @@
 <table border="1">
   <tr>
-    <% 10.times.each do |column| %>
+    <% Drawer.numberOfColumns.times.each do |column| %>
       <td><%= column+1 %></td>
     <% end %>
   </tr>
-  <% 6.times.each do |row| %>
+  <% Drawer.numberOfRows.times.each do |row| %>
     <tr>
-      <% 10.times.each do |column| %>
-        <td <%= raw('style="background-color: #FF4136;"') if screw.locations.include?([row+1, column+1]) %>><a href="/drawers/<%= Drawer.where(:row => row+1, :column => column+1).first.id %>"><%= Drawer.where(:row => row+1, :column => column+1).first.label %></a></td>
+      <% Drawer.numberOfColumns.times.each do |column| %>
+        <% if Drawer.where(:row => row+1, :column => column+1).count > 0 %>
+          <td <%= raw('style="background-color: #FF4136;"') if @item.locations.include?([row+1, column+1]) %>><a href="/drawers/<%= Drawer.where(:row => row+1, :column => column+1).first.id %>"><%= Drawer.where(:row => row+1, :column => column+1).first.label %></a></td>
+        <% else %>
+          <td></td>
+        <% end %>
       <% end %>
     </tr>
   <% end %>

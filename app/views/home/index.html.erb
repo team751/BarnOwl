@@ -38,13 +38,16 @@ h2 {
   <img style="width: 150px;" src="/assets/logo.png" />
 </center>
 <h1 style="text-align: center;">BarnOwl Part Management System</h1><br>
-<div id="remote" style="width: 100%;">
-  <input class="typeahead" type="text" placeholder="Enter search term here..."></div>
-</div>
-<h2>Or</h2>
-<center>
-  <a class="searchlink btn btn-info" href="search/screws">Search for Screws</a>
-</center>
+<%= form_tag "/home/search/barcode", method: "POST" do %>
+  <div id="remote" style="width: 100%;">
+    <input class="typeahead" name="q" type="text" placeholder="Enter search term here..."></div>
+  </div>
+  <input style="visibility: hidden; position: fixed;" type="submit">
+  <h2>Or</h2>
+  <center>
+    <a class="searchlink btn btn-info" href="search/screws">Search for Screws</a>
+  </center>
+<% end %>
 <script>
 var results = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('label'),
@@ -63,5 +66,8 @@ $('#remote .typeahead').typeahead(null, {
   window.location = "/" + data.model + "s/" + data._id;
 });
 
-
+$(".typeahead").focusout(function(){
+  $(this).focus();
+});
+$(".typeahead").focus();
 </script>

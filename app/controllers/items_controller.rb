@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.xml
   def create
-    @item = Item.new(params[:item].permit(:name, :price, :drawer_ids))
+    @item = Item.new(params[:item].permit(:name, :price, :drawer_ids, :barcode, :drawers))
     @item.drawer_ids = params[:item][:drawer_ids]
     @item.save
     
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
   # PUT /items/1.xml
   def update
     respond_to do |wants|
-      if @item.update_attributes(params[:item].permit(:name, :price, :drawer_ids))
+      if @item.update_attributes(params[:item].permit(:name, :price, :drawer_ids, :barcode, :drawers))
         @item.drawer_ids = params[:item][:drawer_ids]
         @item.save
         flash[:notice] = 'Item was successfully updated.'

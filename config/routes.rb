@@ -18,7 +18,7 @@ Labsort::Application.routes.draw do
   }
 
   post "/users/new", to: "users#create"
-
+  post "/home/search/barcode", to: "home#searchbybarcode"
   resources :users
   get "home/index"
   get "search/screws", to: "home#screwSearch"

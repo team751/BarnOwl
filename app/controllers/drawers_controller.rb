@@ -58,7 +58,7 @@ class DrawersController < ApplicationController
   # PUT /drawers/1.xml
   def update
     respond_to do |wants|
-      if @drawer.update_attributes(params[:drawer])
+      if @drawer.update_attributes(params[:drawer].permit(:label, :row, :column))
         flash[:notice] = 'Drawer was successfully updated.'
         wants.html { redirect_to(@drawer) }
         wants.xml  { head :ok }
