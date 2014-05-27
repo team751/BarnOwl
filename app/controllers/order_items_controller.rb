@@ -30,6 +30,7 @@ class OrderItemsController < ApplicationController
   # GET /order_items/new
   def new
     @order_item = OrderItem.new
+    authorize! :new, @order_item, :message => 'Not authorized as an administrator.'
   end
 
   # GET /order_items/1/edit
