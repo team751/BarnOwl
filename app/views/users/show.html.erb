@@ -5,12 +5,12 @@
 <table border="1">
   <thead>
     <tr>
-      <% Certification.all.each do |c| %>
+      <% Certification.all.reverse.each do |c| %>
         <th><%= c.tool_name %></th>
       <% end %>
   </thead>
   <tbody>
-    <% Certification.all.each do |c| %>
+    <% Certification.all.reverse.each do |c| %>
       <td style="min-width: 50px;"><%= @user.certifications.include?(Certification.where(:tool_name => c.tool_name)[0]) ? raw("<div style=\"text-align: center;\">✭</div>") : "" %></td>
     <% end %>
   </tbody>
