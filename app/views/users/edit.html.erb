@@ -1,0 +1,26 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :email %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.association :certifications, as: :check_boxes, value_method: :id, label_method: "tool_name", :boolean_style => :nested %>
+    <%= f.input :roles %>
+    <%= f.input :reset_password_sent_at, :readonly => true %>
+    <%= f.input :sign_in_count, :readonly => true %>
+    <%= f.input :current_sign_in_at, :readonly => true %>
+    <%= f.input :last_sign_in_at, :readonly => true %>
+    <%= f.input :current_sign_in_ip, :readonly => true %>
+    <%= f.input :last_sign_in_ip, :readonly => true %>
+    <%= f.input :confirmation_token, :readonly => true %>
+    <%= f.input :confirmed_at, :readonly => true %>
+    <%= f.input :confirmation_sent_at, :readonly => true %>
+    <%= f.input :unconfirmed_email, :readonly => true %>
+    <%= f.input :created_at, :readonly => true %>
+    <%= f.input :updated_at, :readonly => true %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

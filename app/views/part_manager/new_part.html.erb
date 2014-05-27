@@ -1,0 +1,6 @@
+<%= form_tag "/parts/#{params[:id]}/parts", method: "PUT" do %>
+  <label for="name">Name: <%= text_field_tag "part[name]", @part.name %></label>
+  <label for="part_number">Part Number: <%= text_field_tag "part_number", Part.last_part_id, readonly: true %></label>
+  <label for="state">State: <%= select_tag "part[state_store]", options_for_select({"Ideas" => Part.IDEAS, "Design in progress" => Part.DESIGN_IN_PROGRESS, "Waiting for assembly" => Part.WAITING_FOR_ASSEMBLY, "Parts ordered" => Part.PARTS_ORDERED, "Done" => Part.DONE}, @part.state_store) %></label>
+  <%= submit_tag "Update", class: "btn btn-primary" %>
+<% end %>

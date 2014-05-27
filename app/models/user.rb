@@ -4,9 +4,6 @@ class User
   include User::AuthDefinitions
   include User::Roles
 
-  has_many :identities
-
-
   field :email, type: String
   field :image, type: String
   field :first_name, type: String
@@ -14,6 +11,9 @@ class User
   field :roles_mask, type: Integer
   
   validates_presence_of :email, :first_name, :last_name
+  
+  has_many :identities
+  has_and_belongs_to_many :certifications
 
   def full_name
     "#{first_name} #{last_name}"

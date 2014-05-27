@@ -38,9 +38,12 @@ class UsersController < ApplicationController
 
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    
     respond_to do |format|
 
       if @user.update_attributes(user_params)
+        @user.certification_ids = params[:user][:certification_ids]
+        @user.save!
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
       else
         format.html { render action: 'edit' }
@@ -65,6 +68,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:email, :first_name, :last_name, :roles => [])
+      params.permit(:email, :first_name, :last_name, :certifications, :roles => [])
     end
 end

@@ -1,0 +1,7 @@
+<%= form_tag "/parts/#{@assembly.id}", method: "PUT" do %>
+  <label for="name">Name: <%= text_field_tag "assembly[name]", @assembly.name %></label>
+  <label for="prefix">Prefix: <%= text_field_tag "assembly[prefix]", @assembly.prefix %></label>
+  <label for="year">Year: <%= text_field_tag "assembly[year]", @assembly.year %></label>
+  <label for="state">State: <%= select_tag "assembly[state_store]", options_for_select({"Ideas" => Assembly.IDEAS, "Design in progress" => Assembly.DESIGN_IN_PROGRESS, "Waiting for assembly" => Assembly.WAITING_FOR_ASSEMBLY, "Parts ordered" => Assembly.PARTS_ORDERED, "Done" => Assembly.DONE}, @assembly.state_store) %></label>
+  <%= submit_tag "Update", class: "btn btn-primary" %>
+<% end %>

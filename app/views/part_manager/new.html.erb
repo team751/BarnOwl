@@ -1,0 +1,16 @@
+<%= form_for @assembly do |f| %>
+<% if @assembly.errors.any? %>
+<div class="alert alert-danger">
+  <ul>
+    <% @assembly.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+  Name: <%= f.text_field :name, :placeholder => "Name" %><br>
+  Prefix: <%= f.text_field :prefix, :placeholder => "Prefix" %><br>
+  Year: <%= f.text_field :year, :placeholder => "Year" %><br>
+  <label for="state">State: <%= select_tag "assembly[state_store]", options_for_select({"Ideas" => Assembly.IDEAS, "Design in progress" => Assembly.DESIGN_IN_PROGRESS, "Waiting for assembly" => Assembly.WAITING_FOR_ASSEMBLY, "Parts ordered" => Assembly.PARTS_ORDERED, "Done" => Assembly.DONE}, @assembly.state_store) %></label>
+  <%= f.submit :class => "btn" %>
+<% end %>

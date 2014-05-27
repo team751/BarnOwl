@@ -1,0 +1,25 @@
+<h3>Team 751 2014 Robot - All Parts & Assemblies</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assemblies.each do |assembly| %>
+      <tr>
+        <td><a href="/parts/<%= assembly.id %>"><%= assembly.prefix %></a></td>
+        <td><a href="/parts/<%= assembly.id %>"><%= assembly.name %></a></td>
+        <td><a href="/parts/<%= assembly.id %>"><%= raw(assembly.state_html) %></a></td>
+        <td style="width: 125px;">
+          <a href="/parts/<%= assembly.id %>/edit" style="float: left;" class="btn btn-primary">Edit</a>
+          <%= button_to "Delete", "/parts/#{assembly.id}", :method => :delete, :class => "btn btn-danger", :style => "float: right;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<a href="/parts/new" class="btn btn-info">New Assembly</a>

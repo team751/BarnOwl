@@ -23,6 +23,19 @@ Labsort::Application.routes.draw do
   get "home/index"
   get "search/screws", to: "home#screwSearch"
   
+  get "/parts", to: "part_manager#index", :as => 'assemblies'
+  post "/parts", to: "part_manager#create"
+  get "/parts/:id/parts/new", to: "part_manager#new_part", :as => "new_part"
+  put "/parts/:id/parts", to: "part_manager#create_part"
+  put "/parts/:assem_id/parts/:id", to: "part_manager#update_part"
+  get "/parts/:assem_id/parts/:id/edit", to: "part_manager#edit_part"
+  get "/parts/new", to: "part_manager#new"
+  put "/parts/:id", to: "part_manager#update"
+  delete "/parts/:id", to: "part_manager#destroy"
+  get "/parts/:id", to: "part_manager#show", :as => 'assembly'
+  get "/parts/:id/edit", to: "part_manager#edit"
+  
+  
   get "home/autocomplete"
   
   get "/order_items/:id/status/:verb", to: "order_items#change_status"
