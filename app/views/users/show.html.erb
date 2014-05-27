@@ -5,19 +5,13 @@
 <table border="1">
   <thead>
     <tr>
-      <th>Mill</th>
-      <th>CNC Mill</th>
-      <th>Lathe</th>
-      <th>Drop Bandsaw (Horizontal Bandsaw)</th>
-      <th>Vertical Bandsaw</th>
-      <th>Drill press</th>
-      <th>Welder</th>
-      <th>Grinder</th>
-      <th>Tool Sharpener</th>
-      <th>Jigsaw</th>
-      <th>Chop Saw</th>
+      <%= Certification.all.each do |c| %>
+        <th><%= c.tool_name %></th>
+      <% end %>
   </thead>
   <tbody>
-    
+    <%= Certification.all.each do |c| %>
+      <td><%= @user.certifications.include? Certification.where(:tool_name => c.tool_name) ? "x" : "" %></td>
+    <% end %>
   </tbody>
 </table>
