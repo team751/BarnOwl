@@ -1,5 +1,5 @@
 Labsort::Application.configure do
-    config.action_mailer.default_url_options = {host: "localhost:3000"}
+    config.action_mailer.default_url_options = {host: "enigmatic-meadow-3765.herokuapp.com"}
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
