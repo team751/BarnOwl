@@ -37,7 +37,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem "bootstrap-sass", "~> 2.3.2.1"
+gem "bootstrap-sass", "~> 3.1.1"
 gem "font-awesome-sass-rails"
 gem "simple_form", github: "plataformatec/simple_form"
 gem "devise", "~> 3.0.0"

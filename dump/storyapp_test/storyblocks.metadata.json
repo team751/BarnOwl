@@ -1,1 +1,0 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "storyapp_test.storyblocks", "name" : "_id_" } ] }
