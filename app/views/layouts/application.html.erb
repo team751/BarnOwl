@@ -11,11 +11,16 @@
   <script>
     // define a handler
     function barcodeInputKey(e) {
-      var value = $(".hiddenBarcodeReader").val() + String.fromCharCode(e.keyCode);
-      $(".hiddenBarcodeReader").val(value);
+      if (e.keyCode == 16) {
+        return;
+      }
       if (e.keyCode == 13) {
         $(".hiddenBarcodeReader").parent().submit();
+        return;
       }
+      var value = $(".hiddenBarcodeReader").val() + String.fromCharCode(e.keyCode);
+      $(".hiddenBarcodeReader").val(value);
+      console.log("VAL: " + $(".hiddenBarcodeReader").val());
     }
 
     function barcodeInputPaste(e) {
