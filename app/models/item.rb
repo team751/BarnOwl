@@ -9,6 +9,7 @@ class Item
   field :barcode, type: String
   
   validates_presence_of :name
+  validates_uniqueness_of :barcode
   
   has_and_belongs_to_many :drawers
   
