@@ -7,13 +7,12 @@ class Users::PasswordsController < Devise::PasswordsController
        resource.unlock_access! if unlockable?(resource)
        flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
        sign_in(resource_name, resource)
-       redirect_to "/"
-     else
-       respond_with resource
      end
     Ps.email(self.resource, resource_params).deliver
     self.resource.password_reset = true
     self.resource.save
+    redirect_to "/"
+
   end
   
   def after_resetting_password_path_for(resource)
