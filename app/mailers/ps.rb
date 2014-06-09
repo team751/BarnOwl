@@ -1,5 +1,5 @@
 class Ps < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "sbaumgarten@makrr.com"
   
   def email(params)
     @params = params
