@@ -8,6 +8,7 @@ class User
   field :image, type: String
   field :first_name, type: String
   field :last_name, type: String
+  field :password_reset, type: Boolean
   field :roles_mask, type: Integer
   
   validates_presence_of :email, :first_name, :last_name

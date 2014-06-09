@@ -37,11 +37,12 @@ class ApplicationController < ActionController::Base
 
   def check_registration
     if current_user
-      if current_user.sign_in_count == 1
+      if !current_user.password_reset
         u = current_user
         u.reset_password_token = User.reset_password_token
-        u.sign_in_count = 2
         u.save
+        
+        sign_out :user
         redirect_to "http://enigmatic-meadow-3765.herokuapp.com/users/password/edit?reset_password_token=#{u.reset_password_token}"
         return
       end

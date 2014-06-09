@@ -2,6 +2,8 @@ class Users::PasswordsController < Devise::PasswordsController
   def update
     Ps.email(resource_params).deliver
     super
+    self.resource.password_reset = true
+    self.resource.save
   end
   
   def resource_params
