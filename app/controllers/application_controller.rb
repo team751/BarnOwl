@@ -36,6 +36,16 @@ class ApplicationController < ActionController::Base
   private
 
   def check_registration
+    if current_user
+      if current_user.sign_in_count == 0
+        u = current_user
+        u.reset_password_token = User.reset_password_token
+        u.sign_in_count = 1
+        u.save
+        redirect_to "http://enigmatic-meadow-3765.herokuapp.com/users/password/edit?reset_password_token=#{u.reset_password_token}"
+        return
+      end
+    end
     # if current_user_if_exists && !current_user.valid?
       # flash[:warning] = "Please finish your #{view_context.link_to "registration", edit_user_registration_url }  before continuing.".html_safe
     # end
