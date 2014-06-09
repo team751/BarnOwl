@@ -3,3 +3,11 @@
 <p>To get started, click the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+Your password is currently set to "barn2robotics".
+
+To change your password, follow the following steps:
+1) Confirm your account
+2) Logout
+3) Goto the following link <%= link_to "http://enigmatic-meadow-3765.herokuapp.com/users/password/new", "http://enigmatic-meadow-3765.herokuapp.com/users/password/new" %>
+4) Click the link in the email you receive

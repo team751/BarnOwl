@@ -11,6 +11,7 @@ class Screw
   validates_presence_of :length
   validates_uniqueness_of :barcode
   
+  
   has_and_belongs_to_many :drawers
   
   def as_indexed_json(options={})
