@@ -36,15 +36,18 @@ class ApplicationController < ActionController::Base
   private
 
   def check_registration
+      puts "CONTROLLLLL: #{params[:controller]}"
     if current_user
-      if current_user.password_reset != true
+      
+      if current_user.password_reset != true && params[:controller] != "users/passwords"
         u = current_user
         u.reset_password_token = User.reset_password_token
         u.save
         
         sign_out :user
-        redirect_to "http://enigmatic-meadow-3765.herokuapp.com/users/password/edit?reset_password_token=#{u.reset_password_token}"
+        redirect_to "/users/password/edit?reset_password_token=#{u.reset_password_token}"
         return
+      else
       end
     end
     # if current_user_if_exists && !current_user.valid?
