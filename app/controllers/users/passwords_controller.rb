@@ -4,6 +4,8 @@ class Users::PasswordsController < Devise::PasswordsController
     super
     self.resource.password_reset = true
     self.resource.save
+    
+    redirect_to "/"
   end
   
   def resource_params

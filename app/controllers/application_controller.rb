@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def check_registration
     if current_user
-      if !current_user.password_reset
+      if current_user.password_reset != true
         u = current_user
         u.reset_password_token = User.reset_password_token
         u.save
