@@ -6,6 +6,10 @@ class Users::PasswordsController < Devise::PasswordsController
     self.resource.save
   end
   
+  def after_resetting_password_path_for(resource)
+    "/"
+  end
+  
   def resource_params
     params.require(:user).permit(:email, :password, :password_confirmation, :reset_password_token)
   end
