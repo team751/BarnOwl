@@ -6,7 +6,6 @@
     <li><%= link_to 'Login', new_user_session_path %></li>
   <% end %>
   <li><%= link_to 'Shopping List', "/order_items" %></li>
-  <li><%= link_to 'Parts', "/parts" %></li>
   <% if user_signed_in? %>
     <li><%= link_to 'Edit account', edit_user_registration_path %></li>
     <% if current_user_if_exists.has_role? :admin %>
