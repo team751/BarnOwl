@@ -1,0 +1,46 @@
+<h3>Stats for <input type="number" class="yearField" value="<%= @year %>"></input></h3>
+<center>
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
+	<div style="height: 50px;"></div>
+	<table class="table table-bordered" style="background-color: white;">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Minutes in Lab</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% User.all.sort {|a,b| a.timeInLab(@year.to_i) <=> b.timeInLab(@year.to_i)}.each do |user| %>
+				<tr>
+					<td><%= user.full_name %></td>
+					<td><%= distance_of_time_in_words(user.timeInLab(@year.to_i)) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</center>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Date', 'Total Time in Lab'],
+      <%= raw(TimeEntry.timeInLabByDateData(@year.to_i)) %>
+    ]);
+
+    var options = {
+      title: 'Time in Lab by Date',
+	  hAxis: {
+		title: "Date"
+	  },
+	  vAxis: {
+		title: "Minutes in Lab"
+	  }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>

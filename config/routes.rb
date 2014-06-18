@@ -1,8 +1,5 @@
 Labsort::Application.routes.draw do
-  
-  
-  resources :order_items
-
+  #### ROOT ####
   authenticated :user do
     root to: 'home#index', as: :authenticated_root
   end
@@ -10,19 +7,35 @@ Labsort::Application.routes.draw do
   unauthenticated do
     root to: "home#index"
   end
+  
+  #### API ####
+  namespace :api do
+    get 'fingerTapped', to: 'timelogging#fingerScanned'
+  end
 
+  #### ADMIN/AUTHENTICATION ####
+  post "/users/new", to: "users#create"
+  get "/timecard_manager/index"
   devise_for :users, controllers: {
     registrations: "users/registrations", 
     passwords: "users/passwords", 
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-
-  post "/users/new", to: "users#create"
-  post "/home/search/barcode", to: "home#searchbybarcode"
   resources :users
-  get "home/index"
-  get "search/screws", to: "home#screwSearch"
   
+  #### SEARCH/HOME ####
+  get "home/index"
+  get "home/autocomplete"
+  get "search/screws", to: "home#screwSearch"
+  post "/home/search/barcode", to: "home#searchbybarcode"
+  post "/screws/results", to: "screws#search"
+  
+  #### PART SORT ####
+  resources "drawers"
+  resources "items"
+  resources "screws"
+  
+  #### DRAWINGS ####
   get "/parts", to: "part_manager#index", :as => 'assemblies'
   post "/parts", to: "part_manager#create"
   get "/parts/:id/parts/new", to: "part_manager#new_part", :as => "new_part"
@@ -35,16 +48,11 @@ Labsort::Application.routes.draw do
   get "/parts/:id", to: "part_manager#show", :as => 'assembly'
   get "/parts/:id/edit", to: "part_manager#edit"
   
-  
-  get "home/autocomplete"
-  
+  #### SHOPPING LIST ####
   get "/order_items/:id/status/:verb", to: "order_items#change_status"
   get "/order_items/filter/:filter", to: "order_items#filter"
-  resources "order_items"
-  resources "drawers"
-  resources "items"
-  resources "screws"
-  post "/screws/results", to: "screws#search"
+  resources :order_items
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
