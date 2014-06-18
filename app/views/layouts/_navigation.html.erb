@@ -10,7 +10,7 @@
     <li><%= link_to 'Edit account', edit_user_registration_path %></li>
     <% if current_user_if_exists.has_role? :admin %>
       <li><%= link_to 'Admin', users_path %></li>
-      <li><%= link_to 'Timecards', users_path %></li>
+      <li><%= link_to 'Timecards', "/timecard_manager/index" %></li>
     <% end %>
     <% if current_user_if_exists.has_role?(:admin) || current_user_if_exists.has_role?(:moderator) %>
       <li class="dropdown">
