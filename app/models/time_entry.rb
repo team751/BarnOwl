@@ -16,7 +16,11 @@ class TimeEntry
   
   def self.timeInLabByDateData(year)
     output = ""
-    (Date.new(year, 01, 01)..Date.new(year, 01, 01)).each do |date|
+    endDate = DateTime.now.to_date
+    if Date.new(year+1, 01, 01) < endDate
+      endDate = Date.new(year+1, 01, 01)
+    end
+    (Date.new(year, 01, 01)..endDate).each do |date|
       total = 0
       TimeEntry.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
         total = total+(te.duration)/60.0
