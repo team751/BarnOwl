@@ -2,12 +2,12 @@ class Item
   include Mongoid::Document
   # include Elasticsearch::Model
   # include Elasticsearch::Model::Callbacks
-  
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: 'false' do
-      indexes :name
-    end
-  end
+  # 
+  # settings index: { number_of_shards: 1 } do
+  #   mappings dynamic: 'false' do
+  #     indexes :name
+  #   end
+  # end
   
   field :name, type: String
   field :price, type: Float
