@@ -3,8 +3,8 @@ require 'elasticsearch/model/callbacks'
 
 class Drawer
   include Mongoid::Document
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
           
   field :section, type: Integer
   field :row, type: Integer
@@ -53,4 +53,4 @@ class Drawer
   end
 end
 
-Drawer.import
+# Drawer.import
