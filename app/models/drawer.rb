@@ -1,6 +1,3 @@
-require 'elasticsearch/model'
-require 'elasticsearch/model/callbacks'
-
 class Drawer
   include Mongoid::Document
   # include Elasticsearch::Model
