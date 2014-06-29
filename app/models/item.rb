@@ -1,7 +1,7 @@
 class Item
   include Mongoid::Document
-  # include Elasticsearch::Model
-  # include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   # 
   # settings index: { number_of_shards: 1 } do
   #   mappings dynamic: 'false' do
@@ -37,4 +37,4 @@ class Item
   end
 end
 
-# Item.import
+Item.import

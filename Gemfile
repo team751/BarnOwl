@@ -10,9 +10,9 @@ gem "jquery-rails"
 gem "turbolinks"
 gem 'postmark-rails'
 gem "jbuilder", "~> 1.2"
-gem 'tire'
-# gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-# gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'tire'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 group :development do
   gem "guard-rspec"
   gem "pry"
