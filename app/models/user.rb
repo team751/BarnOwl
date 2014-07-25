@@ -26,7 +26,7 @@ class User
     combination = 0
     (Date.new(year, 01, 01)..Date.new(year+1, 01, 01)).each do |date|
       total = 0
-      TimeEntry.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
+      timeEntries.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
         total = total+te.duration
       end
       combination = combination+total
