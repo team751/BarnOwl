@@ -4,13 +4,13 @@ class Api::TimeloggingController < ApplicationController
     
     # Check user exists
     if users.count == 0
-      render :json => {:success => false, :error => {:message => "User not found"}}
+      render :text => "Get Sam (UNF)"
       return
     else
       # Set user
       user = users.first
       # Update timecard
-      render :json => user.tappedFinger      
+      render :text => user.tappedFinger      
     end
   end
 end

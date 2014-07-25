@@ -41,9 +41,9 @@ class User
     timeentry.user = self
     timeentry.clock_in_time = DateTime.now
     if timeentry.save
-      return {:success => {:action => "clocked_in", :user => full_name}, :error => false}
+      return "#{first_name} checked in"
     else
-      return {:success => false, :error => {:message => "Please try again or contact Sam Baumgarten"}}
+      return "try again"
     end
   end
   
@@ -52,9 +52,9 @@ class User
     timeentry = timeEntries.last
     timeentry.clock_out_time = DateTime.now
     if timeentry.save
-      return {:success => {:action => "clocked_out", :user => full_name}, :error => false}
+      return "#{first_name} checked out"
     else
-      return {:success => false, :error => {:message => "Please try again or contact Sam Baumgarten"}}
+      return "try again"
     end
   end
   
