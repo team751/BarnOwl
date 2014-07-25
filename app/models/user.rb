@@ -6,7 +6,7 @@ class User
 
   field :email, type: String
   field :image, type: String
-  field :fingerprint_id, type: Integer
+  field :fingerprint_id, type: String
   field :first_name, type: String
   field :last_name, type: String
   field :password_reset, type: Boolean
