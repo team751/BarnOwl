@@ -41,7 +41,7 @@ class User
     timeentry.user = self
     timeentry.clock_in_time = DateTime.now
     if timeentry.save
-      return "#{first_name} \n checked in"
+      return "#{first_name} checked in"
     else
       return "try again"
     end
@@ -52,7 +52,7 @@ class User
     timeentry = timeEntries.last
     timeentry.clock_out_time = DateTime.now
     if timeentry.save
-      return "#{first_name} \n checked out"
+      return "#{first_name} checked out"
     else
       return "try again"
     end
