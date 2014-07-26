@@ -10,6 +10,7 @@ class User
   field :first_name, type: String
   field :last_name, type: String
   field :password_reset, type: Boolean
+  field :enroll, type: Boolean
   field :roles_mask, type: Integer
   
   validates_presence_of :email, :first_name, :last_name
@@ -17,6 +18,14 @@ class User
   has_many :identities
   has_many :timeEntries
   has_and_belongs_to_many :certifications
+  
+  def enableEnroll
+    User.all.each do |u|
+      u.update_column(:enroll, false)
+    end
+    
+    update_column(:enroll, true)
+  end
 
   def full_name
     "#{first_name} #{last_name}"
