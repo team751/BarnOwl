@@ -21,10 +21,10 @@ class User
   
   def enableEnroll
     User.all.each do |u|
-      u.update_column(:enroll, false)
+      u.update_attribute(:enroll, false)
     end
     
-    update_column(:enroll, true)
+    update_attribute(:enroll, true)
   end
 
   def full_name
