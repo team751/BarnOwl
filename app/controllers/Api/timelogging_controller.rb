@@ -11,7 +11,7 @@ class Api::TimeloggingController < ApplicationController
         user = users.first
 
         if user.roles.include? "admin"
-          render :text => "enroll"
+          render :json => "enroll"
           return
         end   
       end
@@ -21,19 +21,19 @@ class Api::TimeloggingController < ApplicationController
       user.enroll = false
       user.save
       
-      render :text => "Hello #{user.first_name}. You can now clock in and out using the fingerprint reader."
+      render :json => "Hello #{user.first_name}. You can now clock in and out using the fingerprint reader."
       return
     end
         
     # Check user exists
     if users.count == 0
-      render :text => "Get Sam (UNF)"
+      render :json => "Get Sam (UNF)"
       return
     else
       # Set user
       user = users.first
       # Update timecard
-      render :text => user.tappedFinger      
+      render :json => user.tappedFinger      
     end
   end
 end
