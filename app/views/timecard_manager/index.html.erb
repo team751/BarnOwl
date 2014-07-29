@@ -38,9 +38,12 @@
 	  vAxis: {
 		title: "Minutes in Lab"
 	  }
-    };
+  };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+    
+    $(document).ready(drawChart)
+    $(document).on("page:load", drawChart)
   }
 </script>
