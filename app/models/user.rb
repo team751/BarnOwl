@@ -32,16 +32,20 @@ class User
   end
   
   def timeInLab(year)
-    combination = 0
-    (Date.new(year, 01, 01)..Date.new(year+1, 01, 01)).each do |date|
-      total = 0
-      timeEntries.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
-        total = total+te.duration
+    til = Rails.cache.fetch("u#{id}timeInLab#{year}", :expires_in => 1.day) do
+      combination = 0
+      (Date.new(year, 01, 01)..Date.new(year+1, 01, 01)).each do |date|
+        total = 0
+        timeEntries.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
+          total = total+te.duration
+        end
+        combination = combination+total
       end
-      combination = combination+total
+    
+      combination
     end
     
-    combination
+    return til
   end
   
   def clock_in

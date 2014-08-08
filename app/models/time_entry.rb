@@ -15,23 +15,27 @@ class TimeEntry
   end
   
   def self.timeInLabByDateData(year)
-    output = ""
-    endDate = DateTime.now.to_date
-    if Date.new(year+1, 01, 01) < endDate
-      endDate = Date.new(year+1, 01, 01)
-    end
-    (Date.new(year, 01, 01)..endDate).each do |date|
-      total = 0
-      TimeEntry.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
-        total = total+(te.duration)/60.0
+    tilbd = Rails.cache.fetch("timeentryTimeInLabByDateData#{year}", :expires_in => 1.day) do
+      output = ""
+      endDate = DateTime.now.to_date
+      if Date.new(year+1, 01, 01) < endDate
+        endDate = Date.new(year+1, 01, 01)
       end
-      if date == Date.new(2015, 01, 01)
-        output = "#{output} ['#{date}', #{total}]"        
-      else
-        output = "#{output} ['#{date}', #{total}],"
+      (Date.new(year, 01, 01)..endDate).each do |date|
+        total = 0
+        TimeEntry.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
+          total = total+(te.duration)/60.0
+        end
+        if date == Date.new(2015, 01, 01)
+          output = "#{output} ['#{date}', #{total}]"        
+        else
+          output = "#{output} ['#{date}', #{total}],"
+        end
       end
+    
+      output
     end
     
-    output
+    return tilbd
   end
 end
