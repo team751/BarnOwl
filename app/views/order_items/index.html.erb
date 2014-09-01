@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Price</th>
       <th>McMaster-Carr Part #</th>
       <th>Order State</th>
       <th>Ordered by</th>
@@ -20,6 +21,7 @@
     <% @order_items.each do |order_item| %>
       <tr>
         <td><a target="_blank" href="<%= order_item.logic_url %>"><%= order_item.name %></a></td>
+        <td><%= order_item.price %></td>
         <td><%= order_item.mcmasterPartNumber %></td>
         <td><%= raw(order_item.state_html) %></td>
         <td><%= order_item.ordered_by.full_name if order_item.ordered_by %></td>

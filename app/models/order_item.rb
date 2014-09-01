@@ -4,6 +4,7 @@ class OrderItem
   field :url, type: String
   field :mcmasterPartNumber, type: String
   field :order_state, type: String
+  field :price, type: String
   field :ordered_by_id, type: String
   field :requested_by_id, type: String
   
