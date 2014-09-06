@@ -29,7 +29,7 @@
       <tr>
         <td><%= timeentry.clock_in_time.strftime('%v %r') %></td>
         <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
-        <td><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60) %></td>
+        <td><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_i %></td>
       </tr>
     <% end %>
   </tbody>
