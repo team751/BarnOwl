@@ -8,6 +8,7 @@
       <% Certification.all.reverse.each do |c| %>
         <th><%= c.tool_name %></th>
       <% end %>
+    </tr>
   </thead>
   <tbody>
     <% Certification.all.reverse.each do |c| %>
@@ -15,4 +16,22 @@
     <% end %>
   </tbody>
 </table>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Clock In Time</th>
+        <th>Clock Out Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.timeEntriesForYear(2014).each do |timeentry| %>
+      <tr>
+        <td><%= timeentry.clock_in_time.strftime('%v %r') %></td>
+        <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
   <%= link_to "Edit", edit_user_path(@user) %>
+  
+  
