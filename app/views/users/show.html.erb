@@ -21,6 +21,7 @@
     <tr>
         <th>Clock In Time</th>
         <th>Clock Out Time</th>
+        <th>Duration (in minutes)</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,7 @@
       <tr>
         <td><%= timeentry.clock_in_time.strftime('%v %r') %></td>
         <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
+        <td><%= timeentry.clock_out_time-timeentry.clock_in_time/60.0 %></td>
       </tr>
     <% end %>
   </tbody>
