@@ -30,7 +30,7 @@
         <td><%= timeentry.clock_in_time.strftime('%v %r') %></td>
         <% if timeentry.clock_out_time %>
           <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
-          <td style="<% "background-color: red;" if (((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_f) < 60.0 %>"><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_f %></td>
+          <td style="<%= "background-color: red;" if (((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_f) < 60.0 %>"><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_f %></td>
         <% else %>
           <td>Not clocked out<td>
           <td></td>
