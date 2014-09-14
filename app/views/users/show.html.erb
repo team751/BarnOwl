@@ -28,7 +28,11 @@
     <% @user.timeEntriesForYear(2014).each do |timeentry| %>
       <tr>
         <td><%= timeentry.clock_in_time.strftime('%v %r') %></td>
-        <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
+        <% if timeentry.clock_out_time%>
+          <td><%= timeentry.clock_out_time.strftime('%v %r') %></td>
+        <% else %>
+          <td>Not clocked out<td>
+        <% end %>
         <td><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_i %></td>
       </tr>
     <% end %>
