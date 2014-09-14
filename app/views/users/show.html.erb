@@ -33,7 +33,7 @@
         <% else %>
           <td>Not clocked out<td>
         <% end %>
-        <td><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_i %></td>
+        <td><%= ((timeentry.clock_out_time-timeentry.clock_in_time) * 24 * 60).to_f %></td>
       </tr>
     <% end %>
   </tbody>
