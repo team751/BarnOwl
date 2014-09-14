@@ -14,6 +14,18 @@ class TimeEntry
     end
   end
   
+  def self.studentsOnDate
+    students = []
+    User.all.each do |s|
+      time = s.timeInLabOnDate(date)
+      if time > 1.0
+        students << s
+      end
+    end
+    
+    students
+  end
+  
   def self.timeInLabByDateData(year)
     tilbd = Rails.cache.fetch("timeentryTimeInLabByDateData#{year}", :expires_in => 1.day) do
       output = ""

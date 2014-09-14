@@ -31,6 +31,15 @@ class User
     "#{first_name} #{last_name}"
   end
   
+  def timeInLabOnDate(date)
+    total = 0
+    timeEntries.where(:clock_in_time => date.midnight..(date.midnight+24.hours)).each do |te|
+      total = total+te.duration
+    end
+    
+    total
+  end
+  
   def timeEntriesForYear(year)
     results = []
     (Date.new(year, 01, 01)..Date.new(year+1, 01, 01)).each do |date|
