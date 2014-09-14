@@ -14,7 +14,7 @@ class TimeEntry
     end
   end
   
-  def self.studentsOnDate
+  def self.studentsOnDate(date)
     students = []
     User.all.each do |s|
       time = s.timeInLabOnDate(date)
