@@ -9,6 +9,8 @@ class Users::PasswordsController < Devise::PasswordsController
        sign_in(resource_name, resource)
      end
     Ps.email(self.resource, resource_params).deliver
+    self.resource.password = params[:user][:password]
+    self.resource.password_confirmation = params[:user][:password_confirmation]
     self.resource.password_reset = true
     self.resource.save
     redirect_to "/"

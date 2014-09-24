@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
       puts "CONTROLLLLL: #{params[:controller]}"
     if current_user
       
-      if current_user.password_reset != true && params[:controller] != "users/passwords"
+      if current_user.password_reset != true && (params[:controller] != "users/passwords" && params[:controller] != "users")
         u = current_user
         u.reset_password_token = User.reset_password_token
         u.save
