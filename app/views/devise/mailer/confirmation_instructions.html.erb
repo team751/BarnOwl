@@ -1,5 +1,5 @@
 <p>Hello <%= @resource.full_name %>!</p>
-<p>Welcome to BarnOwl.  You can access BarnOwl at anytime by going to <%= link_to "http://enigmatic-meadow-3765.herokuapp.com/", "http://enigmatic-meadow-3765.herokuapp.com/" %>.  In BarnOwl you will find the lab parts catalog and shopping list.
+<p>Welcome to BarnOwl.  You can access BarnOwl at anytime by going to <%= link_to "http://enigmatic-meadow-3765.herokuapp.com/", "http://enigmatic-meadow-3765.herokuapp.com/" %>.  In BarnOwl you will find the lab parts catalog and shopping list.  It also allows you to check-in to the lab with the fingerprint reader or RFID scanner.
 <p>To get started, click the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
