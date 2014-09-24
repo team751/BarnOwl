@@ -42,7 +42,8 @@ class ApplicationController < ActionController::Base
       if current_user.password_reset != true && (params[:controller] != "users/passwords" && params[:controller] != "users")
         u = current_user
         u.reset_password_token = User.reset_password_token
-        u.save
+        u.reset_password_sent_at = Time.now.utc
+        u.save(validate: false)
         
         sign_out :user
         redirect_to "/users/password/edit?reset_password_token=#{u.reset_password_token}"
