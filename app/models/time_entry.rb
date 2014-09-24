@@ -18,7 +18,7 @@ class TimeEntry
     students = []
     User.all.each do |s|
       time = s.timeInLabOnDate(date)
-      if time > 1.0
+      if time > 60.0
         students << s
       end
     end
