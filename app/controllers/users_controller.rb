@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :checkIsAdmin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -69,5 +71,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.permit(:email, :first_name, :last_name, :certifications, :roles => [])
+    end
+    
+    def checkIsAdmin
+        if !(current_user.roles.include? "admin")
+          redirect_to "/"
+          return
+        end
     end
 end
