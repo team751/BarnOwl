@@ -16,6 +16,7 @@ Labsort::Application.routes.draw do
   #### ADMIN/AUTHENTICATION ####
   post "/users/new", to: "users#create"
   get "/timecard_manager/index"
+  get "/timecards/:date", to: "timecard_manager#getUsersOnDate"
   devise_for :users, controllers: {
     registrations: "users/registrations", 
     passwords: "users/passwords", 
