@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       end
     end
 
-    @user = User.new(params[:user].permit(:email, :first_name, :last_name, :roles, :password, :password_confirmation))
+    @user = User.new(params[:user].permit(:email, :first_name, :last_name, :roles, :password, :password_confirmation, :fingerprint_id))
     @user.roles = params[:user][:roles]
     @user.save
     respond_to do |format|
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:email, :first_name, :last_name, :certifications, :roles => [])
+      params.permit(:email, :first_name, :last_name, :certifications, :roles => [], :fingerprint_id)
     end
     
     def checkIsAdmin

@@ -4,6 +4,7 @@
     <%= f.input :email %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :fingerprint_id %>
     <%= f.association :certifications, as: :check_boxes, value_method: :id, label_method: "tool_name", :boolean_style => :nested %>
     <%= f.input :roles %>
     <%= f.input :reset_password_sent_at, :readonly => true %>
